@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: chromadb
+    ports:
+      - "8000:8000"  # Exposes ChromaDB on port 8000
+    volumes:
+      - chroma_data:/chroma  # Persistent storage
+    environment:
+      - IS_PERSISTENT=TRUE  # Enable persistence
+      - ALLOW_RESET=TRUE     # Allow database reset
+
+volumes:
+  chroma_data:
+    driver: local
